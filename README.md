@@ -2,7 +2,6 @@
 Barebones homebrew Rubik's Cube timer for Nintendo 3DS.
 
 - Requires devkitARM toolchain for 3DS from [devkitpro](https://devkitpro.org/). 
-
 - Compile using `make` command from root directory.
 
 WIP
