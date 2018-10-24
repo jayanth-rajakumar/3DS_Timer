@@ -21,34 +21,35 @@ int main(int argc, char **argv)
 	//the row and column where you want your cursor to move
 	//The top screen has 30 rows and 50 columns
 	//The bottom screen has 30 rows and 40 columns
-	printf("\x1b[16;20HHello World!");
+	printf("\x1b[5;20HHello World!");
 
 	printf("\x1b[30;16HPress Start to exit.");
 
-	if (argc > 1) {
-        char patternized[64];
-        char* facelets = argv[1];
-        if (argc > 2) {
-            patternize(facelets, argv[2], patternized);
-            facelets = patternized;
-        }
-        char *sol = solution(
-            facelets,
-            24,
-            1000,
-            0,
-            "cache"
-        );
-        if (sol == NULL) {
-            puts("Unsolvable cube!");
-            return 2;
-        }
-        puts(sol);
-        free(sol);
-        return 0;
-    } else {
-        return 1;
+	
+    char patternized[64];
+    char* facelets = "DRLUUBFBRBLURRLRUBLRDDFDLFUFUFFDBRDUBRUFLLFDDBFLUBLRBD";
+    /*
+    if (argc > 2) {
+        patternize(facelets, argv[2], patternized);
+        facelets = patternized;
+    }*/
+    char *sol = solution(
+        facelets,
+        24,
+        1000,
+        0,
+        "cache"
+    );
+    if (sol == NULL) {
+       // puts("Unsolvable cube!");
+       // return 2;
     }
+    printf("\x1b[16;1H %s",sol);
+
+   // puts(sol);
+   // free(sol);
+   // return 0;
+    
 	// Main loop
 	while (aptMainLoop())
 	{
@@ -69,5 +70,6 @@ int main(int argc, char **argv)
 	}
 
 	gfxExit();
+	free(sol);
 	return 0;
 }
